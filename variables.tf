@@ -2,10 +2,12 @@
 
 variable "region" {}
 
-variable "account_id" {}
+variable "account_id" {
+  default = "038462750799" 
+}
 
 variable "deploy_role" {
-  default = "pp-deployment-role"
+  default = "arn:aws:iam::038462750799:role/pp-deployment-role" # please replace with appropraite value
 }
 
 variable "devops_account_id" {
@@ -25,10 +27,10 @@ variable "repository" {
   default = "ok-vpc-infra"
 }
 variable "owner" {
-  default = "Okyke"
+  default = "7thmindtech"
 }
 
-variable "alb_arn" {}
+# variable "alb_arn" {}
 
 variable "vpc_cidr" {}
 
