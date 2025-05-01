@@ -1,0 +1,10 @@
+module "waf" {  
+ source       = "./waf" 
+ env          = var.env
+ project_name = var.project
+ app_alb_arn  = var.alb_arn
+ project      = var.project
+ owner        = var.owner
+ repository   = var.repository
+ cust_name    = var.cust_name
+}

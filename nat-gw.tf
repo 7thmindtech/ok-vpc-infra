@@ -1,0 +1,15 @@
+
+resource "aws_nat_gateway" "nat-gw" {
+  allocation_id = aws_eip.nat-eip.id
+  subnet_id     = element(aws_subnet.public_subnet.*.id, 1)
+
+  depends_on = [aws_internet_gateway.gw]
+
+  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-nat-gw" }))
+}
+
+resource "aws_eip" "nat-eip" {
+  vpc = true
+  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-nat-eip" }))
+}
+
