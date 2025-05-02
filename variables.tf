@@ -39,3 +39,10 @@ variable "public_cidrs" {}
 variable "app_priv_cidrs" {}
 
 variable "db_priv_cidrs" {}
+
+##########
+# Cluster
+
+variable "registry_name" {
+  default = "ok-ecr-registry"
+}
