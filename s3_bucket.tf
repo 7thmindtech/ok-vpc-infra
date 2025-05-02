@@ -41,8 +41,16 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
         ],
         "Resource": [
             "${aws_s3_bucket.ok-backup.arn}",
-            "arn:aws:s3:::${var.cust_name}-${var.env}-backup-lb-log/ok-alb-access-log/AWSLogs/${var.account_id}/*"
+            "${aws_s3_bucket.ok-backup.arn}/*"
         ]
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::156460612806:root"
+      },
+      "Action": "s3:PutObject",
+       "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-log/AWSLogs/${var.account_id}/*"
     }
   ]
 }
