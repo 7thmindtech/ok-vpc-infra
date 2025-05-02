@@ -18,7 +18,6 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
           "AWS": "arn:aws:iam::156460612806:root"
         },
         "Action": "s3:PutObject",
-        "s3:PutObjectTagging",
         "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-access-log/AWSLogs/${var.account_id}/*"
     },
     {
