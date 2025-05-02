@@ -161,3 +161,53 @@ resource "aws_security_group" "ecs-sub-sg" {
   }
   tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-ecs-priv-sub-sg" }))
 }
+
+resource "aws_security_group" "ok_alb_sg" {
+  name        = "allow_all_alb"
+  description = "Allow all outbound traffic"
+
+  vpc_id      = aws_vpc.main.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-alb-sg" }))
+}
+
+resource "aws_security_group_rule" "allow_alb_https_rule" {
+  type        = "ingress"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] #modify this to allow only frontend IPs range later
+
+  security_group_id = aws_security_group.ok_alb_sg.id
+
+}
+
+# Expecting traffic to go through 443 only
+resource "aws_security_group_rule" "app-allow_alb_http_rule" {
+  type        = "ingress"
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] #modify this to allow only frontend IPs range later
+
+  security_group_id = aws_security_group.ok_alb_sg.id
+
+}
+
+resource "aws_security_group_rule" "app-allow_alb_http_rule_8443" { #modify this to allow only frontend IPs range later
+  type        = "ingress"
+  from_port   = 8443
+  to_port     = 8443
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = aws_security_group.ok_alb_sg.id
+
+}

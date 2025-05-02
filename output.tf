@@ -102,3 +102,8 @@ output "endpt-sg" {
 output "ecs_sub_sg" {
   value = aws_security_group.ecs-sub-sg.id
 }
+
+output "alb_sg" {
+  value = aws_security_group.ok_alb_sg.id
+  
+}
