@@ -15,6 +15,16 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
         "Sid": "",
         "Effect": "Allow",
         "Principal": {
+          "AWS": "arn:aws:iam::156460612806:root"
+        },
+        "Action": "s3:PutObject",
+        "s3:PutObjectTagging",
+        "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-access-log/AWSLogs/${var.account_id}/*"
+    },
+    {
+        "Sid": "",
+        "Effect": "Allow",
+        "Principal": {
             "AWS": "arn:aws:iam::${var.account_id}:root"
         },
         "Action": "s3:GetObject",
@@ -43,15 +53,6 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
             "${aws_s3_bucket.ok-backup.arn}",
             "${aws_s3_bucket.ok-backup.arn}/*"
         ]
-    },
-    {
-        "Sid": "",
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::156460612806:root"
-        },
-        "Action": "s3:PutObject",
-        "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-access-log/AWSLogs/${var.account_id}/*"
     }
   ]
 }
