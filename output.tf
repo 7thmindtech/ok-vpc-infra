@@ -46,21 +46,21 @@ output "gtw_endpoint" {
   value = aws_vpc_endpoint.s3.id
 }
 
-output "intf_endpoint_ssm" {
-  value = aws_vpc_endpoint.ssm.id
-}
+# output "intf_endpoint_ssm" {
+#   value = aws_vpc_endpoint.ssm.id
+# }
 
-output "intf_endpoint_ssmmessages" {
-  value = aws_vpc_endpoint.ssmmessages.id
-}
+# output "intf_endpoint_ssmmessages" {
+#   value = aws_vpc_endpoint.ssmmessages.id
+# }
 
-output "intf_endpoint_ec2messages" {
-  value = aws_vpc_endpoint.ec2messages.id
-}
+# output "intf_endpoint_ec2messages" {
+#   value = aws_vpc_endpoint.ec2messages.id
+# }
 
-output "intf_endpoint_cwlog" {
-  value = aws_vpc_endpoint.cwlog.id
-}
+# output "intf_endpoint_cwlog" {
+#   value = aws_vpc_endpoint.cwlog.id
+# }
 
 output "default_route_tbl" {
   value = aws_default_route_table.default_route_tab.id
