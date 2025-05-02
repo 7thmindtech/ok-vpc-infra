@@ -41,7 +41,7 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
         ],
         "Resource": [
             "${aws_s3_bucket.ok-backup.arn}",
-            "${aws_s3_bucket.ok-backup.arn}/*"
+            "arn:aws:s3:::${var.cust_name}-${var.env}-backup-lb-log/ok-alb-access-log/AWSLogs/${var.account_id}/*"
         ]
     }
   ]
