@@ -15,7 +15,7 @@ resource "aws_lb" "ok-alb" {
 
   access_logs {
     bucket = aws_s3_bucket.ok-backup.id
-    prefix = "ok-backend-alb-access-log"
+    prefix = "alb"
     enabled = true
   }
   enable_deletion_protection = false
