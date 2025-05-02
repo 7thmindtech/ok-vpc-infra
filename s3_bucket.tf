@@ -1,6 +1,6 @@
 #Loadbalancer access log s3 bucket 
 resource "aws_s3_bucket" "ok-backup" {
-  bucket = "${var.cust_name}-${var.env}-backup-lb-log"
+  bucket = "${var.cust_name}-${var.env}-alb-access-log"
   tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-backup-lb-log" }))
 }
 
@@ -45,12 +45,13 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
         ]
     },
     {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::156460612806:root"
-      },
-      "Action": "s3:PutObject",
-       "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-log/AWSLogs/${var.account_id}/*"
+        "Sid": "",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::156460612806:root"
+        },
+        "Action": "s3:PutObject",
+        "Resource": "arn:aws:s3:::${var.cust_name}-${var.env}-alb-access-log/AWSLogs/${var.account_id}/*"
     }
   ]
 }
