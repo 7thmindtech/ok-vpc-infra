@@ -107,9 +107,9 @@ output "alb_sg" {
   value = aws_security_group.ok_alb_sg.id
 }
 
-output "alb_arn" {
-  value = aws_lb.ok-alb.arn
-}
+# output "alb_arn" {
+#   value = aws_lb.ok-alb.arn
+# }
 
 output "ok_backend_ecr_repo" {
   value = aws_ecr_repository.ok_ecr.repository_url 
