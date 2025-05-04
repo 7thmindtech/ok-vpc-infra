@@ -42,9 +42,9 @@ output "alb_access_log_bucket" {
   value = aws_s3_bucket.ok-backup.arn
 }
 
-output "gtw_endpoint" {
-  value = aws_vpc_endpoint.s3.id
-}
+# output "gtw_endpoint" {
+#   value = aws_vpc_endpoint.s3.id
+# }
 
 # output "intf_endpoint_ssm" {
 #   value = aws_vpc_endpoint.ssm.id
@@ -70,9 +70,9 @@ output "pub_route_tbl" {
   value = aws_route_table.pub_route_tab.id
 }
 
-output "priv_route_tbl" {
-  value = aws_route_table.priv_route_tab.id
-}
+# output "priv_route_tbl" {
+#   value = aws_route_table.priv_route_tab.id
+# }
 
 
 # output "nat-gw" {
@@ -108,7 +108,7 @@ output "alb_sg" {
 }
 
 output "alb_arn" {
-  value = aws_lb.ok_alb.arn
+  value = aws_lb.ok-alb.arn
 }
 
 output "ok_backend_ecr_repo" {
