@@ -1,0 +1,9 @@
+module "ok_backend_ecs_cluster" {
+    source = "./ecs-modules/ecs-cluster"
+    env = var.env
+    cust_name = var.cust_name
+    cluster_name = var.ecs_cluster_name
+    kms_id = data.terraform_remote_state.cust_name_cicd.outputs.kms_key_arn
+    log_groud_name = aws_cloudwatch_log_group.ok_cluster_log_grp.name
+    tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-${var.ecs_cluster_name}-${var.env}" }))
+}

@@ -8,7 +8,7 @@ resource "aws_lb_listener" "alb-listner_80" {
     target_group_arn =  aws_lb_target_group.ok-ecomm-tg.arn
   }
 
-  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-ecomm-listner-80" }))
+  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-${var.ecs_cluster_name}-listner-80" }))
 }
 
 # Change to https when certificate is available
