@@ -38,7 +38,7 @@ output "db_priv_sub_3" {
   value = element(aws_subnet.db_priv_subnet.*.id, 3)
 }
 
-output "backup_bucket" {
+output "alb_access_log_bucket" {
   value = aws_s3_bucket.ok-backup.arn
 }
 
@@ -75,9 +75,9 @@ output "priv_route_tbl" {
 }
 
 
-output "nat-gw" {
-  value = aws_nat_gateway.nat-gw.id
-}
+# output "nat-gw" {
+#   value = aws_nat_gateway.nat-gw.id
+# }
 
 output "igw" {
   value = aws_internet_gateway.gw.id
@@ -105,5 +105,22 @@ output "ecs_sub_sg" {
 
 output "alb_sg" {
   value = aws_security_group.ok_alb_sg.id
-  
 }
+
+output "alb_arn" {
+  value = aws_lb.ok_alb.arn
+}
+
+output "ok_backend_ecr_repo" {
+  value = aws_ecr_repository.ok_ecr.repository_url 
+}
+
+# output "cluster_arn" {
+#     value       = module.ok_backend_ecs_cluster.cluster_arn
+#     description = "cluster arn"
+# }
+
+# output "cluster_name" {
+#     value       = module.ok_backend_ecs_cluster.cluster_name
+#     description = "cluster name"
+# }
