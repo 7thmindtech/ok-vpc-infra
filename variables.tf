@@ -46,22 +46,3 @@ variable "db_priv_cidrs" {}
 variable "ecr_repo_name" {
   default = "ok-ecr-registry"
 }
-variable "ecs_cluster_name" {
-  default = "ecomm-backend"
-}
-
-variable "ecs_family" {
-  default = "ecomm-backend-task"
-}
-
-variable "stage_name" {}
-
-variable "secret_names" {
-  default = [
-    "DB_URL",
-    "DB_USERNAME",
-    "DB_PASSWORD",
-    "DB_NAME",
-    "DB_PORT"
-  ]
-}
