@@ -32,12 +32,3 @@ terraform {
 #   }
 # }
 
-data "terraform_remote_state" "cust_name_cicd"{
-  backend = "s3"
-  
-  config = {
-    bucket        = "${var.cust_name}-terraform-remote-state-bucket" # please replace with appropraite value
-    key           = "${var.cust_name}-cicd/terraform.tfstate"
-    region        = "eu-west-1"
-  }
-}
