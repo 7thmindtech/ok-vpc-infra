@@ -39,7 +39,7 @@ output "db_priv_sub_3" {
 }
 
 output "alb_access_log_bucket" {
-  value = aws_s3_bucket.ok-backup.arn
+  value = aws_s3_bucket.ok-backup.bucket
 }
 
 # output "gtw_endpoint" {
