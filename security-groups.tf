@@ -136,21 +136,28 @@ resource "aws_security_group" "ecs-sub-sg" {
     from_port   = 8000
     to_port     = 8000
     protocol    = "tcp"
-    cidr_blocks = var.public_cidrs
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = var.public_cidrs
+    cidr_blocks = [aws_vpc.main.cidr_block]
+  }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = var.public_cidrs
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }  
 
     egress {
@@ -194,6 +201,17 @@ resource "aws_security_group_rule" "app-allow_alb_http_rule" {
   type        = "ingress"
   from_port   = 80
   to_port     = 80
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"] #modify this to allow only frontend IPs range later
+
+  security_group_id = aws_security_group.ok_alb_sg.id
+
+}
+
+resource "aws_security_group_rule" "app-allow_alb_http_rule_8080" {
+  type        = "ingress"
+  from_port   = 8080
+  to_port     = 8080
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"] #modify this to allow only frontend IPs range later
 
