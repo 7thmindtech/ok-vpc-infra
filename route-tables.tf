@@ -16,29 +16,16 @@ resource "aws_route" "pub_route" {
   route_table_id         = aws_route_table.pub_route_tab.id
 }
 
-# resource "aws_route_table" "priv_route_tab" {
-#   vpc_id = aws_vpc.main.id
-
-#   tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-priv-route-table" }))
-# }
-
-# resource "aws_route" "priv-route" {
-#   route_table_id         = aws_route_table.priv_route_tab.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id         = aws_nat_gateway.nat-gw.id
-# }
-
 resource "aws_route_table" "priv_route_tab" {
   vpc_id = aws_vpc.main.id
 
-
-  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-private-route-table" }))
+  tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-priv-route-table" }))
 }
-resource "aws_route" "priv_route" {
-  route_table_id         = aws_route_table.priv_route_tab.id
-  destination_prefix_list_id = aws_vpc_endpoint.s3.prefix_list_id
 
-  depends_on = [aws_vpc_endpoint.s3]
+resource "aws_route" "priv-route" {
+  route_table_id         = aws_route_table.priv_route_tab.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat-gw.id
 }
 
 resource "aws_route_table_association" "pub_sub_assoc" {
