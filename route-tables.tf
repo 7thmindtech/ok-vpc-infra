@@ -11,6 +11,7 @@ resource "aws_route_table" "pub_route_tab" {
 }
 
 resource "aws_route" "pub_route" {
+  destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.gw.id
   route_table_id         = aws_route_table.pub_route_tab.id
 }
@@ -35,8 +36,7 @@ resource "aws_route_table" "priv_route_tab" {
 }
 resource "aws_route" "priv_route" {
   route_table_id         = aws_route_table.priv_route_tab.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_vpc_endpoint.s3.id
+  vpc_endpoint_id             = aws_vpc_endpoint.s3.id
 
   depends_on = [aws_vpc_endpoint.s3]
 }
