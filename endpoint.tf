@@ -90,29 +90,29 @@ resource "aws_vpc_endpoint_subnet_association" "ssmmc" {
 #   subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 3)
 # }
 
-# resource "aws_vpc_endpoint" "cwlog" {
-#   vpc_id            = aws_vpc.main.id
-#   service_name      = "com.amazonaws.${var.region}.logs"
-#   vpc_endpoint_type = "Interface"
+resource "aws_vpc_endpoint" "cwlog" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.${var.region}.logs"
+  vpc_endpoint_type = "Interface"
 
-#   security_group_ids = [
-#     aws_security_group.endpt-sg.id,
-#   ]
+  security_group_ids = [
+    aws_security_group.endpt-sg.id,
+  ]
 
-#   private_dns_enabled = "true"
-# }
+  private_dns_enabled = "true"
+}
 
-# resource "aws_vpc_endpoint_subnet_association" "cwloga" {
-#   vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
-#   subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 1)
-# }
+resource "aws_vpc_endpoint_subnet_association" "cwloga" {
+  vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
+  subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 1)
+}
 
-# resource "aws_vpc_endpoint_subnet_association" "cwlogb" {
-#   vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
-#   subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 2)
-# }
+resource "aws_vpc_endpoint_subnet_association" "cwlogb" {
+  vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
+  subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 2)
+}
 
-# resource "aws_vpc_endpoint_subnet_association" "cwlogc" {
-#   vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
-#   subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 3)
-# }
+resource "aws_vpc_endpoint_subnet_association" "cwlogc" {
+  vpc_endpoint_id = aws_vpc_endpoint.cwlog.id
+  subnet_id       = element(aws_subnet.app_priv_subnet.*.id, 3)
+}

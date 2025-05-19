@@ -36,6 +36,8 @@ resource "aws_route_table" "priv_route_tab" {
     gateway_id = aws_vpc_endpoint.s3.id
   }
 
+  depends_on = [aws_vpc_endpoint.s3]
+
   tags = merge(local.tags, tomap({ "Name" = "${var.cust_name}-private-route-table" }))
 }
 
