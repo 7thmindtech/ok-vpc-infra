@@ -36,7 +36,6 @@ resource "aws_route_table" "priv_route_tab" {
 }
 resource "aws_route" "priv_route" {
   route_table_id         = aws_route_table.priv_route_tab.id
-  vpc_endpoint_id             = aws_vpc_endpoint.s3.id
   destination_prefix_list_id = aws_vpc_endpoint.s3.prefix_list_id
 
   depends_on = [aws_vpc_endpoint.s3]
