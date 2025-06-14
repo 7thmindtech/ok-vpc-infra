@@ -124,3 +124,8 @@ output "ok_backend_ecr_repo" {
 #     value       = module.ok_backend_ecs_cluster.cluster_name
 #     description = "cluster name"
 # }
+
+output "storage_bucket" {
+  value = aws_s3_bucket.ok-backup.bucket
+  
+}
