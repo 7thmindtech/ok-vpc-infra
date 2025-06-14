@@ -46,6 +46,7 @@ resource "aws_s3_bucket_policy" "ok-backup-policy" {
         },
         "Action": [
             "s3:PutObject",
+            "s3:DeleteObject",
             "s3:PutObjectACL"
         ],
         "Resource": [
